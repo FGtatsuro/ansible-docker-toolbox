@@ -1,2 +1,3 @@
 ---
 # defaults file for docker_toolbox
+docker_installscript_tmppath: "/tmp/docker_install.sh"

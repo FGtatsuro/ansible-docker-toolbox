@@ -1,2 +1,9 @@
 ---
 # tasks file for docker_toolbox(On Debian family)
+- name: Download install script for Docker Engine
+  get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
+  register: dl_result
+- name: Install Docker Engine
+  shell: "sh {{ docker_installscript_tmppath }}"
+  become: yes
+  when: dl_result.changed
