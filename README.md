@@ -65,6 +65,11 @@ Local requirements are as follows.
 - Ansible (>= 2.0.0)
 - Docker (>= 1.10.1)
 
+Notes
+-----
+
+On Debian, [Kitematic](https://kitematic.com/) isn't installed.
+
 License
 -------
 
