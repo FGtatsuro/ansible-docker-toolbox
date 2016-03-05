@@ -7,3 +7,6 @@
   shell: "sh {{ docker_installscript_tmppath }}"
   become: yes
   when: dl_result.changed
+- name: Install Docker Machine
+  get_url: url="{{ docker_machine_download_url }}" checksum="sha256:{{ docker_machine_sha256 }}" dest="{{ docker_machine_bin_path }}" mode="0755"
+  become: yes
