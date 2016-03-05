@@ -1,2 +1,5 @@
 roles/*
 !roles/docker_toolbox
+
+# Ansible
+tests/*.retry
