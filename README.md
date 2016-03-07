@@ -11,6 +11,7 @@ Requirements
 The dependencies on other softwares/librarys for this role.
 
 - Debian
+  - Python (>= 2.7.9)
 - OSX
   - Homebrew (>= 0.9.5)
 
