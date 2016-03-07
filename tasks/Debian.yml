@@ -1,8 +1,20 @@
 ---
 # tasks file for docker_toolbox(On Debian family)
-- name: Download install script for Docker Engine
+- name: Download install script for Docker Engine with get_url module
   get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
   register: dl_result
+  when: "{{ ansible_python_version | version_compare('2.7.9', '>=') }}"
+# get_url module on Python(< 2.7.9) cause SSL error
+- block:
+    - name: Check whether install script for Docker Engine exists
+      stat: path="{{ docker_installscript_tmppath }}"
+      register: st_result
+      changed_when: no
+    - name: Download install script for Docker Engine with curl
+      command: "curl https://get.docker.com -o {{ docker_installscript_tmppath }}"
+      register: dl_result
+      when: not st_result.stat.exists
+  when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
 - name: Install Docker Engine
   shell: "sh {{ docker_installscript_tmppath }}"
   become: yes
