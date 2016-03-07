@@ -1,8 +1,5 @@
 ---
 # tasks file for docker_toolbox(On Debian family)
-- name: Add key for Docker repository
-  apt_key: url=https://get.docker.com/gpg
-  become: yes
 - name: Download install script for Docker Engine
   get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
   register: dl_result
