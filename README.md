@@ -10,7 +10,7 @@ Requirements
 
 The dependencies on other softwares/librarys for this role.
 
-- Debian
+- Debian/Ubuntu
   - Python (>= 2.7.9)
 - OSX
   - Homebrew (>= 0.9.5)
@@ -30,7 +30,7 @@ The variables we can use in this role.
 |docker_compose_sha256|SHA256 signature of Docker Compose binary. This is used for idempotency.|7c453a3e52fb97bba34cf404f7f7e7913c86e2322d612e00c71bd1588587c91e|
 |docker_compose_bin_path|Path Docker Compose binary is put.|/usr/local/bin/docker-compose|
 
-- These variables are valid only on Debian, and they aren't used in OSX.
+- These variables are valid only on Debian/Ubuntu, and they aren't used in OSX.
 - If you want to overwrite values, please check following sites.
   - https://github.com/docker/machine/releases
   - https://github.com/docker/compose/releases
