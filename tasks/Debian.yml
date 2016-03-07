@@ -1,5 +1,8 @@
 ---
 # tasks file for docker_toolbox(On Debian family)
+- name: Use latest wget to avoid SSL certificate error on access of following tasks
+  apt: name=wget state=latest update_cache=yes cache_valid_time=3600 install_recommends=no
+  become: yes
 - name: Download install script for Docker Engine
   get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
   register: dl_result
