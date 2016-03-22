@@ -1,0 +1,30 @@
+---
+# tasks file for docker_toolbox(On Linux)
+- name: Download install script for Docker Engine with get_url module
+  get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
+  when: "{{ ansible_python_version | version_compare('2.7.9', '>=') }}"
+# get_url module on Python(< 2.7.9) cause SSL error
+- block:
+    - name: Check whether install script for Docker Engine exists
+      stat: path="{{ docker_installscript_tmppath }}"
+      register: st_result
+      changed_when: no
+    - name: Download install script for Docker Engine with curl
+      command: "curl https://get.docker.com -o {{ docker_installscript_tmppath }}"
+      when: not st_result.stat.exists
+  when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
+- name: Check whether Docker Engine is installed
+  command: "which docker"
+  register: which_docker
+  changed_when: no
+  ignore_errors: yes
+- name: Install Docker Engine
+  shell: "sh {{ docker_installscript_tmppath }}"
+  become: yes
+  when: which_docker.rc != 0
+- name: Install Docker Machine
+  get_url: url="{{ docker_machine_download_url }}" checksum="sha256:{{ docker_machine_sha256 }}" dest="{{ docker_machine_bin_path }}" mode="0755"
+  become: yes
+- name: Install Docker Compose
+  get_url: url="{{ docker_compose_download_url }}" checksum="sha256:{{ docker_compose_sha256 }}" dest="{{ docker_compose_bin_path }}" mode="0755"
+  become: yes

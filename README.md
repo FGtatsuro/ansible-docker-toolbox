@@ -11,6 +11,7 @@ Requirements
 The dependencies on other softwares/librarys for this role.
 
 - Debian/Ubuntu
+- Alpine Linux
 - OSX
   - Homebrew (>= 0.9.5)
 
@@ -52,7 +53,7 @@ Test on local Docker host
 -------------------------
 
 This project run tests on Travis CI, but we can also run then on local Docker host.
-Please check `install`, `before_script`, and `script` sections of `.travis.yml`. 
+Please check `install`, `before_script`, and `script` sections of `.travis.yml`.
 We can use same steps of them for local Docker host.
 
 Local requirements are as follows.
@@ -63,7 +64,7 @@ Local requirements are as follows.
 Notes
 -----
 
-On Debian, [Kitematic](https://kitematic.com/) isn't installed.
+On Linux, [Kitematic](https://kitematic.com/) isn't installed.
 
 License
 -------
