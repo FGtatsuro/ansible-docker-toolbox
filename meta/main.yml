@@ -15,10 +15,14 @@ galaxy_info:
       versions:
         - precise
         - trusty
+    - name: Alpine
+      versions:
+        - 3.3
 
   galaxy_tags:
     - development
     - osx
+    - alpine
 
 # dependencies: []
 dependencies:
