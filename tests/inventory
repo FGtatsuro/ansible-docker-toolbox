@@ -1,5 +1,5 @@
 [docker_host]
-localhost
+localhost       ansible_connection=local
 
 [docker_container]
-container
+container       ansible_connection=docker
