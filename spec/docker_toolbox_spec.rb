@@ -1,7 +1,7 @@
 require "spec_helper_#{ENV['SPEC_TARGET_BACKEND']}"
 require "brewcask_patch"
 
-describe package('dockertoolbox'), :if => os[:family] == 'darwin' do
+describe package('docker'), :if => os[:family] == 'darwin' do
   it { should be_installed.by('homebrew_cask') }
 end
 
