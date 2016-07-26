@@ -41,7 +41,7 @@
         file: path="{{ docker_machine_bin_path }}" mode="0755"
         become: yes
     when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
-  when: "docker_machine_is_installed"
+  when: "docker_install_machine"
 - block:
   - name: Install Docker Compose
     get_url: url="{{ docker_compose_download_url }}" checksum="sha256:{{ docker_compose_sha256 }}" dest="{{ docker_compose_bin_path }}" mode="0755"
@@ -61,4 +61,4 @@
         file: path="{{ docker_compose_bin_path }}" mode="0755"
         become: yes
     when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
-  when: "docker_compose_is_installed"
+  when: "docker_install_compose"
