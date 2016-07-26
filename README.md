@@ -71,7 +71,11 @@ Local requirements are as follows.
 Notes
 -----
 
-On Debian, [Kitematic](https://kitematic.com/) isn't installed.
+- On Debian, [Kitematic](https://kitematic.com/) isn't installed.
+- On OSX, this role just does installation. To use Docker daemon and related tools. additional steps are needed.
+
+  - If you install Docker Toolbox(`docker_install_native_client`=False), you must create Docker environment with Docker Machine. (ex. `https://docs.docker.com/machine/get-started/`)
+  - If you install Docker for Mac(`docker_install_native_client`=True), you must run /Applications/Docker.app manually and complete setup.
 
 License
 -------
