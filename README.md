@@ -22,11 +22,11 @@ The variables we can use in this role.
 |name|description|default|
 |---|---|---|
 |docker_installscript_tmppath|Temporary path for downloaded script to install Docker Engine.|/tmp/docker_install.sh|
-|docker_machine_is_installed|Whether Docker Machine is installed. This value isn't valid on OSX.|True|
+|docker_machine_is_installed|Whether Docker Machine is installed. This value isn't valid on OSX.|yes|
 |docker_machine_download_url|Download URL for Docker Machine binary. Different architecture/version has different URL.|https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Linux-x86_64|
 |docker_machine_sha256|SHA256 signature of Docker Machine binary. This is used for idempotency.|6c383c4716985db2d7ae7e1689cc4acee0b23284e6e852d6bc59011696ca734a|
 |docker_machine_bin_path|Path Docker Machine binary is put.|/usr/local/bin/docker-machine|
-|docker_compose_is_installed|Whether Docker Compose is installed. This value isn't valid on OSX.|True|
+|docker_compose_is_installed|Whether Docker Compose is installed. This value isn't valid on OSX.|yes|
 |docker_compose_download_url|Download URL for Docker Compose binary. Different architecture/version has different URL.|https://github.com/docker/compose/releases/download/1.6.2/docker-compose-Linux-x86_64|
 |docker_compose_sha256|SHA256 signature of Docker Compose binary. This is used for idempotency.|7c453a3e52fb97bba34cf404f7f7e7913c86e2322d612e00c71bd1588587c91e|
 |docker_compose_bin_path|Path Docker Compose binary is put.|/usr/local/bin/docker-compose|
@@ -38,7 +38,7 @@ The variables we can use in this role.
 
 |name|description|default|
 |---|---|---|
-|docker_install_native_client|Whether native client on OSX(Docker for Mac) is installed instead of Docker ToolBox.|False|
+|docker_install_native_client|Whether native client on OSX(Docker for Mac) is installed instead of Docker ToolBox.|no|
 
 - These variables are valid only on OSX, and they aren't used on Debian/Ubuntu.
 
@@ -74,8 +74,8 @@ Notes
 - On Debian, [Kitematic](https://kitematic.com/) isn't installed.
 - On OSX, this role just does installation. To use Docker daemon and related tools. additional steps are needed.
 
-  - If you install Docker Toolbox(`docker_install_native_client`=False), you must create Docker environment with Docker Machine. (ex. `https://docs.docker.com/machine/get-started/`)
-  - If you install Docker for Mac(`docker_install_native_client`=True), you must run /Applications/Docker.app manually and complete setup.
+  - If you install Docker Toolbox(`docker_install_native_client`=no), you must create Docker environment with Docker Machine. (ex. `https://docs.docker.com/machine/get-started/`)
+  - If you install Docker for Mac(`docker_install_native_client`=yes), you must run /Applications/Docker.app manually and complete setup.
 
 License
 -------
