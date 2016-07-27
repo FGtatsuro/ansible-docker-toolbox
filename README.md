@@ -76,8 +76,14 @@ To confirm the behavior of Docker daemon, we run tests on Vagrant VM.
 
 ```bash
 $ vagrant up
-$ ansible-playbook tests/test.yml -i tests/inventory -l vagrant --private-key=.vagrant/machines/vagrant/virtualbox/private_key --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
-$ bundle exec rake spec SPEC_TARGET=vagrant
+
+# Debian
+$ ansible-playbook tests/test.yml -i tests/inventory -l vagrant_debian --private-key=.vagrant/machines/vagrant_debian/virtualbox/private_key --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
+$ bundle exec rake spec SPEC_TARGET=vagrant_debian
+
+# CentOS
+$ ansible-playbook tests/test.yml -i tests/inventory -l vagrant_centos --private-key=.vagrant/machines/vagrant_centos/virtualbox/private_key --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
+$ bundle exec rake spec SPEC_TARGET=vagrant_centos
 ```
 
 Notes
