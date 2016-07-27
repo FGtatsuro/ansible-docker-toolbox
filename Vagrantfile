@@ -2,7 +2,6 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "debian/jessie64"
 
   # http://qiita.com/elim/items/816f03c732e4b274d181
   if ENV['VAGRANT_BRIDGE']
@@ -13,10 +12,22 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # Make defautl shared folder disabled
-  config.vm.synced_folder ".", "/vagrant", disabled: true
-
   # https://www.vagrantup.com/docs/multi-machine/
-  config.vm.define "vagrant" do |web|
+  config.vm.define "vagrant_debian" do |debian|
+    debian.vm.box = "debian/jessie64"
+
+    # Ref. http://qiita.com/betahikaru/items/d77f5891f222eba0c4fa
+    debian.vm.network :forwarded_port, id: "ssh", guest: 22, host: 2223
+
+    # Make defautl shared folder disabled
+    debian.vm.synced_folder ".", "/vagrant", disabled: true
+  end
+
+  config.vm.define "vagrant_centos" do |centos|
+    centos.vm.box = "centos/7"
+    centos.vm.network :forwarded_port, id: "ssh", guest: 22, host: 2224
+
+    # Make defautl shared folder disabled
+    centos.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
   end
 end

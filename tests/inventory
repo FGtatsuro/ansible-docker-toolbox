@@ -5,8 +5,13 @@ localhost
 container
 
 # Example
-#   - ansible vagrant -i tests/inventory -m setup --private-key=.vagrant/machines/vagrant/virtualbox/private_key
-#   - ansible-playbook tests/test.yml -i tests/inventory -l vagrant --private-key=.vagrant/machines/vagrant/virtualbox/private_key
-# You may change host/port on your environment. Please check 'vagrant ssh-config vagrant'.
+#   - ansible vagrant_debian -i tests/inventory -m setup
+#   - ansible-playbook tests/test.yml -i tests/inventory -l vagrant_debian
 [vagrant]
-vagrant         ansible_connection=ssh ansible_user=vagrant ansible_host=127.0.0.1 ansible_port=2222
+vagrant_debian          ansible_port=2223 ansible_ssh_private_key_file='.vagrant/machines/vagrant_debian/virtualbox/private_key'
+vagrant_centos          ansible_port=2224 ansible_ssh_private_key_file='.vagrant/machines/vagrant_centos/virtualbox/private_key'
+
+[vagrant:vars]
+ansible_connection=ssh
+ansible_user=vagrant
+ansible_host=127.0.0.1

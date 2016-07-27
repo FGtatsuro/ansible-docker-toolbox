@@ -15,7 +15,11 @@ namespace :spec do
       :backend  =>  'docker'
     },
     {
-      :name     =>  'vagrant',
+      :name     =>  'vagrant_debian',
+      :backend  =>  'vagrant'
+    },
+    {
+      :name     =>  'vagrant_centos',
       :backend  =>  'vagrant'
     }
   ]

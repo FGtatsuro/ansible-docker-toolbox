@@ -1,5 +1,5 @@
 ---
-# tasks file for docker_toolbox(On Debian family)
+# tasks file for docker_toolbox(On Linux)
 - block:
   - name: Download install script for Docker Engine with get_url module
     get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
@@ -39,10 +39,17 @@
 
   # ATTENTION: This task is for backward compatibility when target environment doesn't use Systemd.
   # But this isn't tested well.
-  - name: Set options of Docker deamon in Upstart setting
-    lineinfile:
-      dest: '/etc/default/docker'
-      line: "DOCKER_OPTS=\"{{ docker_daemon_options }}\""
+  - block:
+    - name: Check whether /etc/default/docker exists
+      stat:
+        path: '/etc/default/docker'
+      register: stat_default_docker
+      changed_when: no
+    - name: Set options of Docker deamon in Upstart setting
+      lineinfile:
+        dest: '/etc/default/docker'
+        line: "DOCKER_OPTS=\"{{ docker_daemon_options }}\""
+      when: stat_default_docker.stat.exists
     become: yes
     when: docker_daemon_options is defined
 
