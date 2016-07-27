@@ -30,6 +30,7 @@ The variables we can use in this role.
 |docker_compose_download_url|Download URL for Docker Compose binary. Different architecture/version has different URL.|https://github.com/docker/compose/releases/download/1.6.2/docker-compose-Linux-x86_64|
 |docker_compose_sha256|SHA256 signature of Docker Compose binary. This is used for idempotency.|7c453a3e52fb97bba34cf404f7f7e7913c86e2322d612e00c71bd1588587c91e|
 |docker_compose_bin_path|Path Docker Compose binary is put.|/usr/local/bin/docker-compose|
+|docker_daemon_options|Options Docker daemon uses. It's defined as string like `-g /mnt/docker --insecure-registry 192.168.1.1:5000`.|-H fd://|
 
 - These variables are valid only on Debian/Ubuntu, and they aren't used on OSX.
 - If you want to overwrite values, please check following sites.
@@ -67,6 +68,17 @@ Local requirements are as follows.
 
 - Ansible (>= 2.0.0)
 - Docker (>= 1.10.1)
+
+Test on Vagrant VM
+------------------
+
+To confirm the behavior of Docker daemon, we run tests on Vagrant VM.
+
+```bash
+$ vagrant up
+$ ansible-playbook tests/test.yml -i tests/inventory -l vagrant --private-key=.vagrant/machines/vagrant/virtualbox/private_key --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
+$ bundle exec rake spec SPEC_TARGET=vagrant
+```
 
 Notes
 -----

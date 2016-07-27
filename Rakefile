@@ -12,7 +12,11 @@ namespace :spec do
     },
     {
       :name     =>  'container',
-      :backend  =>  'docker' 
+      :backend  =>  'docker'
+    },
+    {
+      :name     =>  'vagrant',
+      :backend  =>  'vagrant'
     }
   ]
   if ENV['SPEC_TARGET'] then
