@@ -16,3 +16,27 @@ end
 describe command('which docker-compose') do
   its(:exit_status) { should eq 0 }
 end
+
+describe file('/etc/systemd/system/docker.service.d'), :if => ['debian', 'ubuntu'].include?(os[:family]) do
+  it { should be_directory }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end
+
+describe file('/etc/systemd/system/docker.service.d/docker.conf'), :if => ['debian', 'ubuntu'].include?(os[:family]) do
+  it { should be_file }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  its(:content) { should include('[Service]') }
+  its(:content) { should include("ExecStart=\n") }
+  its(:content) { should include("ExecStart=/usr/bin/docker daemon") }
+  its(:content) { should include('--insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000') }
+end
+
+describe file('/etc/default/docker'), :if => ['debian', 'ubuntu'].include?(os[:family]) do
+  it { should be_file }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  its(:content) { should include('DOCKER_OPTS="') }
+  its(:content) { should include('--insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000"') }
+end

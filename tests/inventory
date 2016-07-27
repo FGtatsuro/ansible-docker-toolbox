@@ -3,3 +3,10 @@ localhost
 
 [docker_container]
 container
+
+# Example
+#   - ansible vagrant -i tests/inventory -m setup --private-key=.vagrant/machines/vagrant/virtualbox/private_key
+#   - ansible-playbook tests/test.yml -i tests/inventory -l vagrant --private-key=.vagrant/machines/vagrant/virtualbox/private_key
+# You may change host/port on your environment. Please check 'vagrant ssh-config vagrant'.
+[vagrant]
+vagrant         ansible_connection=ssh ansible_user=vagrant ansible_host=127.0.0.1 ansible_port=2222
