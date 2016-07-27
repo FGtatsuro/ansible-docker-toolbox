@@ -36,6 +36,7 @@ matrix:
       env:
         - TARGET=container
         - CONNECTION=docker
+        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1 --insecure-registry 192.168.1.2'"
     - os: linux
       language: python
       python: 2.7
@@ -44,6 +45,7 @@ matrix:
       env:
         - TARGET=localhost
         - CONNECTION=local
+        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1 --insecure-registry 192.168.1.2'"
     - os: linux
       dist: trusty
       language: python
@@ -51,6 +53,7 @@ matrix:
       env:
         - TARGET=localhost
         - CONNECTION=local
+        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1 --insecure-registry 192.168.1.2'"
 
 # This role needs sudo, thus we can't use the new container infrastructure
 # sudo: false
@@ -64,7 +67,7 @@ install:
 script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
-  - ansible-playbook tests/test.yml -i tests/inventory -l ${TARGET} --connection=${CONNECTION} -vvvv
+  - ansible-playbook tests/test.yml -i tests/inventory -l ${TARGET} --extra-vars="${EXTRA_VARS}" -vvvv
   - bundle install
   - bundle exec rake spec SPEC_TARGET=${TARGET}
 
