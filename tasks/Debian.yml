@@ -35,6 +35,7 @@
         src: 'docker.service'
         dest: '/etc/systemd/system/docker.service.d/docker.conf'
     become: yes
+    when: docker_daemon_options is defined
 
   # ATTENTION: This task is for backward compatibility when target environment doesn't use Systemd.
   # But this isn't tested well.
@@ -43,6 +44,7 @@
       dest: '/etc/default/docker'
       line: "DOCKER_OPTS=\"{{ docker_daemon_options }}\""
     become: yes
+    when: docker_daemon_options is defined
 
 - block:
   - name: Install Docker Machine
