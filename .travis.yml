@@ -68,6 +68,9 @@ script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
   - ansible-playbook tests/test.yml -i tests/inventory -l ${TARGET} --connection=${CONNECTION} --extra-vars="${EXTRA_VARS}" -vvvv
+  # Workaround: On Ubuntu trusty, /etc/default/docker can't be read by travis user because the mode of this file(root:root) is 640.
+  # This fact is no problem in normal case, but affects tests.
+  - if [ -e /etc/default/docker ]; then sudo chmod 644 /etc/default/docker; fi
   - bundle install
   - bundle exec rake spec SPEC_TARGET=${TARGET}
 
