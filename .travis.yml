@@ -67,7 +67,7 @@ install:
 script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
-  - ansible-playbook tests/test.yml -i tests/inventory -l ${TARGET} --extra-vars="${EXTRA_VARS}" -vvvv
+  - ansible-playbook tests/test.yml -i tests/inventory -l ${TARGET} --connection=${CONNECTION} --extra-vars="${EXTRA_VARS}" -vvvv
   - bundle install
   - bundle exec rake spec SPEC_TARGET=${TARGET}
 
