@@ -36,7 +36,7 @@ matrix:
       env:
         - TARGET=container
         - CONNECTION=docker
-        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1 --insecure-registry 192.168.1.2'"
+        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
     - os: linux
       language: python
       python: 2.7
@@ -45,7 +45,7 @@ matrix:
       env:
         - TARGET=localhost
         - CONNECTION=local
-        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1 --insecure-registry 192.168.1.2'"
+        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
     - os: linux
       dist: trusty
       language: python
@@ -53,7 +53,7 @@ matrix:
       env:
         - TARGET=localhost
         - CONNECTION=local
-        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1 --insecure-registry 192.168.1.2'"
+        - EXTRA_VARS="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
 
 # This role needs sudo, thus we can't use the new container infrastructure
 # sudo: false
