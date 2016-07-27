@@ -1,5 +1,5 @@
 ---
-# tasks file for docker_toolbox(On Debian family)
+# tasks file for docker_toolbox(On Linux)
 - block:
   - name: Download install script for Docker Engine with get_url module
     get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
