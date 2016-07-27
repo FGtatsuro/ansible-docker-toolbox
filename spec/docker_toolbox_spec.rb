@@ -29,12 +29,14 @@ describe file('/etc/systemd/system/docker.service.d/docker.conf'), :if => ['debi
   it { should be_grouped_into 'root' }
   its(:content) { should include('[Service]') }
   its(:content) { should include("ExecStart=\n") }
-  its(:content) { should include('ExecStart=/usr/bin/docker daemon -H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000') }
+  its(:content) { should include("ExecStart=/usr/bin/docker daemon") }
+  its(:content) { should include('--insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000') }
 end
 
 describe file('/etc/default/docker'), :if => ['debian', 'ubuntu'].include?(os[:family]) do
   it { should be_file }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
-  its(:content) { should include('DOCKER_OPTS="-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000"') }
+  its(:content) { should include('DOCKER_OPTS="') }
+  its(:content) { should include('--insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000"') }
 end
