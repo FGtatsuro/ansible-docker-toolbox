@@ -69,6 +69,17 @@ Local requirements are as follows.
 - Ansible (>= 2.0.0)
 - Docker (>= 1.10.1)
 
+Test on Vagrant VM
+------------------
+
+To confirm the behavior of Docker daemon, we run tests on Vagrant VM.
+
+```bash
+$ vagrant up
+$ ansible-playbook tests/test.yml -i tests/inventory -l vagrant --private-key=.vagrant/machines/vagrant/virtualbox/private_key --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
+$ bundle exec rake spec SPEC_TARGET=vagrant
+```
+
 Notes
 -----
 
