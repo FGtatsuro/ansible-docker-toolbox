@@ -67,7 +67,11 @@
     - name: Set options of Docker deamon in setting under sysconfig directory
       lineinfile:
         dest: '/etc/sysconfig/docker'
-        line: "export other_args=\"{{ docker_daemon_options }}\""
+        # CentOS6: other_args
+        # Amazon Linux: OPTIONS
+        regexp: '^(other_args|OPTIONS)=".*"$'
+        line: "\\1=\"{{ docker_daemon_options }}\""
+        backrefs: yes
       when: stat_sysconfig_docker.stat.exists
     become: yes
     when: docker_daemon_options is defined
