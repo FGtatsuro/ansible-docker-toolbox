@@ -38,6 +38,7 @@
     when: docker_daemon_options is defined
 
   # ATTENTION: This task is for backward compatibility when target environment doesn't use Systemd.
+  # Ref. https://docs.docker.com/engine/admin/configuring/#/ubuntu
   # But this isn't tested well.
   - block:
     - name: Check whether /etc/default/docker exists
@@ -50,6 +51,24 @@
         dest: '/etc/default/docker'
         line: "DOCKER_OPTS=\"{{ docker_daemon_options }}\""
       when: stat_default_docker.stat.exists
+    become: yes
+    when: docker_daemon_options is defined
+
+  # ATTENTION: This task is for backward compatibility when target environment doesn't use Systemd.
+  # Ref. https://docs.docker.com/engine/admin/configuring/#/centos-red-hat-enterprise-linux-fedora
+  # Ref. http://qiita.com/okamu_/items/d9d3f825a8afc3f14c32
+  # But this isn't tested well.
+  - block:
+    - name: Check whether /etc/sysconfig/docker exists
+      stat:
+        path: '/etc/sysconfig/docker'
+      register: stat_sysconfig_docker
+      changed_when: no
+    - name: Set options of Docker deamon in Upstart setting
+      lineinfile:
+        dest: '/etc/sysconfig/docker'
+        line: "export other_args=\"{{ docker_daemon_options }}\""
+      when: stat_sysconfig_docker.stat.exists
     become: yes
     when: docker_daemon_options is defined
 
