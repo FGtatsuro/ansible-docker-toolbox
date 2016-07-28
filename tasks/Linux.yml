@@ -64,7 +64,7 @@
         path: '/etc/sysconfig/docker'
       register: stat_sysconfig_docker
       changed_when: no
-    - name: Set options of Docker deamon in Upstart setting
+    - name: Set options of Docker deamon in setting under sysconfig directory
       lineinfile:
         dest: '/etc/sysconfig/docker'
         line: "export other_args=\"{{ docker_daemon_options }}\""
