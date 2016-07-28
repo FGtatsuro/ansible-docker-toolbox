@@ -91,9 +91,10 @@ Notes
 
 - On Debian, [Kitematic](https://kitematic.com/) isn't installed.
 - On OSX, this role just does installation. To use Docker daemon and related tools. additional steps are needed.
-
   - If you install Docker Toolbox(`docker_install_native_client`=no), you must create Docker environment with Docker Machine. (ex. https://docs.docker.com/machine/get-started/)
   - If you install Docker for Mac(`docker_install_native_client`=yes), you must run /Applications/Docker.app manually and complete setup.
+- If you use `docker_daemon_options` variable, You must restart Docker daemon to adapt your options.
+  - Ref. https://docs.docker.com/engine/admin/configuring/
 
 License
 -------
