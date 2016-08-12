@@ -1,7 +1,7 @@
 ---
 # tasks file for docker_toolbox(On OSX)
 - name: Install Docker Toolbox with Homebrew Cask
-  homebrew_cask: name=dockertoolbox
+  homebrew_cask: name=docker-toolbox
   when: "not docker_install_native_client|bool"
 - name: Install Docker native client with Homebrew Cask
   homebrew_cask: name=docker
