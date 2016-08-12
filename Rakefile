@@ -8,7 +8,8 @@ namespace :spec do
   hosts = [
     {
       :name     =>  'localhost',
-      :backend  =>  'exec'
+      :backend  =>  'exec',
+      :group_append_user  =>  'travis'
     },
     {
       :name     =>  'container',
@@ -36,6 +37,7 @@ namespace :spec do
     RSpec::Core::RakeTask.new(host[:name].to_sym) do |t|
       ENV['TARGET_HOST'] = host[:name]
       ENV['SPEC_TARGET_BACKEND'] = host[:backend]
+      ENV['GROUP_APPEND_USER'] = host[:group_append_user]
       t.pattern = "spec/docker_toolbox_spec.rb"
     end
   end

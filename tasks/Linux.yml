@@ -23,6 +23,13 @@
     shell: "sh {{ docker_installscript_tmppath }}"
     become: yes
     when: which_docker.rc != 0
+  - name: Append docker group to groups of specified user
+    user:
+      name: "{{ docker_group_append_user }}"
+      groups: 'docker'
+      append: yes
+    become: yes
+    when: docker_group_append_user is defined
 
   # ATTENTION: These tasks requires that target environment uses systemd.
   - block:

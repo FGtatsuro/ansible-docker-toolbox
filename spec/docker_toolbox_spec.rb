@@ -5,6 +5,10 @@ describe command('which docker') do
   its(:exit_status) { should eq 0 }
 end
 
+describe file('/etc/group'), :if => ENV['GROUP_APPEND_USER'] && ['debian', 'ubuntu'].include?(os[:family]) do
+  its(:content) { should match /docker:x:\d*:#{ENV['GROUP_APPEND_USER']}/ }
+end
+
 describe command('which docker-machine') do
   its(:exit_status) { should eq 0 }
 end
