@@ -17,7 +17,7 @@ describe command('which docker-compose') do
   its(:exit_status) { should eq 0 }
 end
 
-describe package('dockertoolbox'), :if => os[:family] == 'darwin' do
+describe package('docker-toolbox'), :if => os[:family] == 'darwin' do
   it { should be_installed.by('homebrew_cask') }
 end
 
