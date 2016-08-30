@@ -1,5 +1,11 @@
 ---
 # tasks file for docker_toolbox(On Linux)
+- name: Check whether Docker Engine is installed
+  command: "which docker"
+  register: which_docker
+  changed_when: no
+  ignore_errors: yes
+
 - block:
   - name: Download install script for Docker Engine with get_url module
     get_url: url="https://get.docker.com" dest="{{ docker_installscript_tmppath }}"
@@ -14,15 +20,12 @@
         command: "curl https://get.docker.com -o {{ docker_installscript_tmppath }}"
         when: not st_result_docker.stat.exists
     when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
-  - name: Check whether Docker Engine is installed
-    command: "which docker"
-    register: which_docker
-    changed_when: no
-    ignore_errors: yes
   - name: Install Docker Engine
     shell: "sh {{ docker_installscript_tmppath }}"
     become: yes
-    when: which_docker.rc != 0
+  when: which_docker.rc != 0
+
+- block:
   - name: Append docker group to groups of specified user
     user:
       name: "{{ docker_group_append_user }}"
