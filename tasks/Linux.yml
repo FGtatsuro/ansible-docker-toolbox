@@ -23,7 +23,11 @@
   - name: Install Docker Engine
     shell: "sh {{ docker_installscript_tmppath }}"
     become: yes
-  when: which_docker.rc != 0
+  when: which_docker.rc != 0 and not ansible_distribution == 'Amazon'
+
+- name: Install Docker on specified distribution
+  include: "{{ ansible_distribution }}.yml"
+  when: which_docker.rc != 0 and ansible_distribution == 'Amazon'
 
 - block:
   - name: Append docker group to groups of specified user

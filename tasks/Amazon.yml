@@ -1,0 +1,7 @@
+---
+# tasks file for docker_toolbox(On Amazon Linux)
+- name: Install Docker package
+  yum:
+    name: 'docker'
+    update_cache: yes
+  become: yes
