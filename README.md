@@ -19,6 +19,10 @@ Role Variables
 
 The variables we can use in this role.
 
+### Only Linux
+
+These variables are valid only on Debian/Ubuntu, and they aren't used on OSX.
+
 |name|description|type|default|
 |---|---|---|---|
 |docker_installscript_tmppath|Temporary path for downloaded script to install Docker Engine.|str|/tmp/docker_install.sh|
@@ -34,16 +38,17 @@ The variables we can use in this role.
 |docker_group_append_user|**This variable is deprecated! Please use `docker_group_append_users`**<br><br> Append 'docker' group to specified user's groups. The user can exec 'docker' command without root privilege.|str|It isn't defined in default.|
 |docker_group_append_users|Append 'docker' group to specified multiple users' groups. The users can exec 'docker' command without root privilege.|list|It isn't defined in default.|
 
-- These variables are valid only on Debian/Ubuntu, and they aren't used on OSX.
 - If you want to overwrite values, please check following sites.
   - https://github.com/docker/machine/releases
   - https://github.com/docker/compose/releases
 
+### Only OSX
+
+These variables are valid only on OSX, and they aren't used on Debian/Ubuntu.
+
 |name|description|default|
 |---|---|---|
 |docker_install_native_client|Whether native client on OSX(Docker for Mac) is installed instead of Docker ToolBox.|no|
-
-- These variables are valid only on OSX, and they aren't used on Debian/Ubuntu.
 
 Role Dependencies
 -----------------
