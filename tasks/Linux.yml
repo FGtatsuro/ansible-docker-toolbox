@@ -30,13 +30,22 @@
   when: which_docker.rc != 0 and ansible_distribution == 'Amazon'
 
 - block:
-  - name: Append docker group to groups of specified user
+  - name: "[DEPRECATED] Append docker group to groups of specified user"
     user:
       name: "{{ docker_group_append_user }}"
       groups: 'docker'
       append: yes
     become: yes
     when: docker_group_append_user is defined
+- block:
+  - name: "Append docker group to groups of specified users"
+    user:
+      name: "{{ item }}"
+      groups: 'docker'
+      append: yes
+    with_items: "{{ docker_group_append_users }}"
+    become: yes
+    when: docker_group_append_users is defined
 
   # ATTENTION: These tasks requires that target environment uses systemd.
   - block:
