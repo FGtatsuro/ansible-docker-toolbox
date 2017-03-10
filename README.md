@@ -19,19 +19,20 @@ Role Variables
 
 The variables we can use in this role.
 
-|name|description|default|
+|name|description|type|default|
 |---|---|---|
-|docker_installscript_tmppath|Temporary path for downloaded script to install Docker Engine.|/tmp/docker_install.sh|
-|docker_install_machine|Whether Docker Machine is installed. This value isn't valid on OSX.|yes|
-|docker_machine_download_url|Download URL for Docker Machine binary. Different architecture/version has different URL.|https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Linux-x86_64|
-|docker_machine_sha256|SHA256 signature of Docker Machine binary. This is used for idempotency.|6c383c4716985db2d7ae7e1689cc4acee0b23284e6e852d6bc59011696ca734a|
-|docker_machine_bin_path|Path Docker Machine binary is put.|/usr/local/bin/docker-machine|
-|docker_install_compose|Whether Docker Compose is installed. This value isn't valid on OSX.|yes|
-|docker_compose_download_url|Download URL for Docker Compose binary. Different architecture/version has different URL.|https://github.com/docker/compose/releases/download/1.6.2/docker-compose-Linux-x86_64|
-|docker_compose_sha256|SHA256 signature of Docker Compose binary. This is used for idempotency.|7c453a3e52fb97bba34cf404f7f7e7913c86e2322d612e00c71bd1588587c91e|
-|docker_compose_bin_path|Path Docker Compose binary is put.|/usr/local/bin/docker-compose|
-|docker_daemon_options|Options Docker daemon uses. It's defined as string like `-g /mnt/docker --insecure-registry 192.168.1.1:5000`.|It isn't defined in default.|
-|docker_group_append_user|Append 'docker' group to specified user's groups. The user can exec 'docker' command without root privilege.|It isn't defined in default.|
+|docker_installscript_tmppath|Temporary path for downloaded script to install Docker Engine.|str|/tmp/docker_install.sh|
+|docker_install_machine|Whether Docker Machine is installed. This value isn't valid on OSX.|bool|yes|
+|docker_machine_download_url|Download URL for Docker Machine binary. Different architecture/version has different URL.|str|https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Linux-x86_64|
+|docker_machine_sha256|SHA256 signature of Docker Machine binary. This is used for idempotency.|str|6c383c4716985db2d7ae7e1689cc4acee0b23284e6e852d6bc59011696ca734a|
+|docker_machine_bin_path|Path Docker Machine binary is put.|str|/usr/local/bin/docker-machine|
+|docker_install_compose|Whether Docker Compose is installed. This value isn't valid on OSX.|bool|yes|
+|docker_compose_download_url|Download URL for Docker Compose binary. Different architecture/version has different URL.|str|https://github.com/docker/compose/releases/download/1.6.2/docker-compose-Linux-x86_64|
+|docker_compose_sha256|SHA256 signature of Docker Compose binary. This is used for idempotency.|str|7c453a3e52fb97bba34cf404f7f7e7913c86e2322d612e00c71bd1588587c91e|
+|docker_compose_bin_path|Path Docker Compose binary is put.|str|/usr/local/bin/docker-compose|
+|docker_daemon_options|Options Docker daemon uses. It's defined as string like `-g /mnt/docker --insecure-registry 192.168.1.1:5000`.|str|It isn't defined in default.|
+|docker_group_append_user|**This variable is deprecated! Please use `docker_group_append_users`** <br> Append 'docker' group to specified user's groups. The user can exec 'docker' command without root privilege.|str|It isn't defined in default.|
+|docker_group_append_users|Append 'docker' group to specified multiple users' groups. The users can exec 'docker' command without root privilege.|list|It isn't defined in default.|
 
 - These variables are valid only on Debian/Ubuntu, and they aren't used on OSX.
 - If you want to overwrite values, please check following sites.
