@@ -19,8 +19,12 @@ Role Variables
 
 The variables we can use in this role.
 
+### Only Linux
+
+These variables are valid only on Debian/Ubuntu, and they aren't used on OSX.
+
 |name|description|type|default|
-|---|---|---|
+|---|---|---|---|
 |docker_installscript_tmppath|Temporary path for downloaded script to install Docker Engine.|str|/tmp/docker_install.sh|
 |docker_install_machine|Whether Docker Machine is installed. This value isn't valid on OSX.|bool|yes|
 |docker_machine_download_url|Download URL for Docker Machine binary. Different architecture/version has different URL.|str|https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Linux-x86_64|
@@ -31,19 +35,20 @@ The variables we can use in this role.
 |docker_compose_sha256|SHA256 signature of Docker Compose binary. This is used for idempotency.|str|7c453a3e52fb97bba34cf404f7f7e7913c86e2322d612e00c71bd1588587c91e|
 |docker_compose_bin_path|Path Docker Compose binary is put.|str|/usr/local/bin/docker-compose|
 |docker_daemon_options|Options Docker daemon uses. It's defined as string like `-g /mnt/docker --insecure-registry 192.168.1.1:5000`.|str|It isn't defined in default.|
-|docker_group_append_user|**This variable is deprecated! Please use `docker_group_append_users`** <br> Append 'docker' group to specified user's groups. The user can exec 'docker' command without root privilege.|str|It isn't defined in default.|
+|docker_group_append_user|**This variable is deprecated! Please use `docker_group_append_users`**<br><br> Append 'docker' group to specified user's groups. The user can exec 'docker' command without root privilege.|str|It isn't defined in default.|
 |docker_group_append_users|Append 'docker' group to specified multiple users' groups. The users can exec 'docker' command without root privilege.|list|It isn't defined in default.|
 
-- These variables are valid only on Debian/Ubuntu, and they aren't used on OSX.
 - If you want to overwrite values, please check following sites.
   - https://github.com/docker/machine/releases
   - https://github.com/docker/compose/releases
 
+### Only OSX
+
+These variables are valid only on OSX, and they aren't used on Debian/Ubuntu.
+
 |name|description|default|
 |---|---|---|
 |docker_install_native_client|Whether native client on OSX(Docker for Mac) is installed instead of Docker ToolBox.|no|
-
-- These variables are valid only on OSX, and they aren't used on Debian/Ubuntu.
 
 Role Dependencies
 -----------------
