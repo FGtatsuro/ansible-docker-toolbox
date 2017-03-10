@@ -20,7 +20,7 @@ Role Variables
 The variables we can use in this role.
 
 |name|description|type|default|
-|---|---|---|
+|---|---|---|---|
 |docker_installscript_tmppath|Temporary path for downloaded script to install Docker Engine.|str|/tmp/docker_install.sh|
 |docker_install_machine|Whether Docker Machine is installed. This value isn't valid on OSX.|bool|yes|
 |docker_machine_download_url|Download URL for Docker Machine binary. Different architecture/version has different URL.|str|https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Linux-x86_64|
