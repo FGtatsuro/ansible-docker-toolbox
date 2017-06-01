@@ -15,7 +15,8 @@ matrix:
       install:
         - brew install libffi libyaml openssl
         - brew link openssl --force
-        - sudo pip install -U setuptools
+        # Workaround: https://github.com/pypa/setuptools/issues/1042
+        # - sudo pip install -U setuptools
         - sudo pip install ansible
         - ansible-galaxy install FGtatsuro.python-requirements
     - os: linux
