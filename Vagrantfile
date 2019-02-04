@@ -32,8 +32,8 @@ Vagrant.configure("2") do |config|
     debian.vm.synced_folder ".", "/vagrant", disabled: true
 
     debian.vm.provision "shell", inline: <<-SHELL
-      # For Ansible, it's better that /usr/bin/python is Python2.
-      apt-get update && apt-get install -y python && apt-get clean
+      # For first execution of Ansible
+      ln -s /usr/bin/python3 /usr/bin/python
     SHELL
   end
 
