@@ -48,7 +48,7 @@ describe file('/etc/systemd/system/docker.service.d/docker.conf'), :if => os[:fa
   it { should be_grouped_into 'root' }
   its(:content) { should include('[Service]') }
   its(:content) { should include("ExecStart=\n") }
-  its(:content) { should include("ExecStart=/usr/bin/docker daemon") }
+  its(:content) { should include("ExecStart=/usr/bin/dockerd") }
   its(:content) { should include('--insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000') }
 end
 
