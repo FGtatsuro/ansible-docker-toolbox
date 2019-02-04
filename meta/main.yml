@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: docker-toolbox
+  role_name: docker_toolbox
   author: FGtatsuro
   description: Ansible role for Docker Toolbox
   license: MIT
