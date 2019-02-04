@@ -26,11 +26,11 @@ These variables are valid only on Debian/Ubuntu, and they aren't used on OSX.
 |name|description|type|default|
 |---|---|---|---|
 |docker_installscript_tmppath|Temporary path for downloaded script to install Docker Engine.|str|/tmp/docker_install.sh|
-|docker_install_machine|Whether Docker Machine is installed. This value isn't valid on OSX.|bool|yes|
+|docker_install_machine|Whether Docker Machine is installed. This value isn't valid on OSX.|bool|no|
 |docker_machine_download_url|Download URL for Docker Machine binary. Different architecture/version has different URL.|str|https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Linux-x86_64|
 |docker_machine_sha256|SHA256 signature of Docker Machine binary. This is used for idempotency.|str|6c383c4716985db2d7ae7e1689cc4acee0b23284e6e852d6bc59011696ca734a|
 |docker_machine_bin_path|Path Docker Machine binary is put.|str|/usr/local/bin/docker-machine|
-|docker_install_compose|Whether Docker Compose is installed. This value isn't valid on OSX.|bool|yes|
+|docker_install_compose|Whether Docker Compose is installed. This value isn't valid on OSX.|bool|no|
 |docker_compose_download_url|Download URL for Docker Compose binary. Different architecture/version has different URL.|str|https://github.com/docker/compose/releases/download/1.6.2/docker-compose-Linux-x86_64|
 |docker_compose_sha256|SHA256 signature of Docker Compose binary. This is used for idempotency.|str|7c453a3e52fb97bba34cf404f7f7e7913c86e2322d612e00c71bd1588587c91e|
 |docker_compose_bin_path|Path Docker Compose binary is put.|str|/usr/local/bin/docker-compose|
