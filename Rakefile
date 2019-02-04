@@ -20,6 +20,10 @@ namespace :spec do
       :backend  =>  'vagrant'
     },
     {
+      :name     =>  'vagrant_ubuntu',
+      :backend  =>  'vagrant'
+    },
+    {
       :name     =>  'vagrant_centos',
       :backend  =>  'vagrant'
     }

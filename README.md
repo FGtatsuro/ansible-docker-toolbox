@@ -88,6 +88,10 @@ $ vagrant up
 $ ansible-playbook tests/test.yml -i tests/inventory -l vagrant_debian --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
 $ bundle exec rake spec SPEC_TARGET=vagrant_debian
 
+# Ubuntu
+$ ansible-playbook tests/test.yml -i tests/inventory -l vagrant_ubuntu --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
+$ bundle exec rake spec SPEC_TARGET=vagrant_ubuntu
+
 # CentOS
 $ ansible-playbook tests/test.yml -i tests/inventory -l vagrant_centos --extra-vars="docker_daemon_options='-H fd:// --insecure-registry 192.168.1.1:5000 --insecure-registry 192.168.1.2:5000'"
 $ bundle exec rake spec SPEC_TARGET=vagrant_centos
