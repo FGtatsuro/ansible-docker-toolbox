@@ -13,10 +13,6 @@ matrix:
         - CONNECTION=local
         - PYTHONPATH="/Library/Python/2.7/site-packages:$PYTHONPATH"
       install:
-        - brew install libffi libyaml openssl
-        - brew link openssl --force
-        # Workaround: https://github.com/pypa/setuptools/issues/1042
-        # - sudo pip install -U setuptools
         - sudo pip install ansible
         - ansible-galaxy install FGtatsuro.python-requirements
     - os: linux
