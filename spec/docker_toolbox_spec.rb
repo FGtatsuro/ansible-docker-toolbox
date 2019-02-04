@@ -9,14 +9,6 @@ describe file('/etc/group'), :if => ENV['GROUP_APPEND_USER'] && ['debian', 'ubun
   its(:content) { should match /docker:x:\d*:#{ENV['GROUP_APPEND_USER']}/ }
 end
 
-describe command('which docker-machine') do
-  its(:exit_status) { should eq 0 }
-end
-
-describe command('which docker-compose') do
-  its(:exit_status) { should eq 0 }
-end
-
 describe package('docker-toolbox'), :if => os[:family] == 'darwin' do
   it { should be_installed.by('homebrew_cask') }
 end
