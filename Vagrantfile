@@ -23,9 +23,23 @@ Vagrant.configure("2") do |config|
     debian.vm.synced_folder ".", "/vagrant", disabled: true
   end
 
+  config.vm.define "vagrant_ubuntu" do |debian|
+    debian.vm.box = "ubuntu/cosmic64"
+
+    debian.vm.network :forwarded_port, id: "ssh", guest: 22, host: 2224
+
+    # Make defautl shared folder disabled
+    debian.vm.synced_folder ".", "/vagrant", disabled: true
+
+    debian.vm.provision "shell", inline: <<-SHELL
+      # For Ansible, it's better that /usr/bin/python is Python2.
+      apt-get update && apt-get install -y python && apt-get clean
+    SHELL
+  end
+
   config.vm.define "vagrant_centos" do |centos|
     centos.vm.box = "centos/7"
-    centos.vm.network :forwarded_port, id: "ssh", guest: 22, host: 2224
+    centos.vm.network :forwarded_port, id: "ssh", guest: 22, host: 2225
 
     # Make defautl shared folder disabled
     centos.vm.synced_folder ".", "/home/vagrant/sync", disabled: true

@@ -5,3 +5,4 @@ roles/*
 tests/*.retry
 
 .vagrant
+ubuntu-*-console.log
